@@ -4,10 +4,12 @@ import xlwings as xw
 def main():
     wb = xw.Book.caller()
     sheet = wb.sheets[0]
-    if sheet["A1"].value == "Hello xlwings!":
-        sheet["A1"].value = "Bye xlwings!"
+    if sheet["B1"].value == "Hello xlwings!":
+        sheet["B1"].value = "Bye xlwings!"
+        sheet["B1"].font.color = 255;
     else:
-        sheet["A1"].value = "Hello xlwings!"
+        sheet["B1"].value = "Hello xlwings!"
+        sheet["B1"].font.color = 0;
 
 
 @xw.func
