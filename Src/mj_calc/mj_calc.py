@@ -15,11 +15,34 @@ class Counter:
         print(self.play_count, self.people_count)
 
     def doStart(self):
-        pass
-
+        self.setName()
+        for i in range(1,self.play_count + 1):
+            self.getMax(i)
 
     def getMax(self, play_index):
-        pass
+        Max = 0
+        index = 0
+        column = self.changeNumToChar(play_index)
+        for i in range(self.people_count):
+            position = column + str(i + OLD_POSITION)
+            if self.sheet[position].value is not None:
+                if self.sheet[position].value > Max:
+                    Max = self.sheet[position].value
+                    index = i
+        self.sheet[column + str(index + NEW_POSITION)].value = 1
+
+    def setName(self):
+        for i in range(self.people_count):
+            before = 'B' + str(OLD_POSITION + i)
+            after = 'B' + str(NEW_POSITION + i)
+            self.sheet[after].value = self.sheet[before].value
+
+    def changeNumToChar(self, play = None):
+        if play <= 24:
+            return chr(play + 66)
+        else:
+            return 'A' + chr(play + 40)
+
 
 
 
