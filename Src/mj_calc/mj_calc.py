@@ -18,6 +18,7 @@ class Counter:
         self.setName()
         for i in range(1,self.play_count + 1):
             self.getMax(i)
+        self.countBigWinner()
 
     def getMax(self, play_index):
         Max = 0
@@ -43,10 +44,16 @@ class Counter:
         else:
             return 'A' + chr(play + 40)
 
-
-
-
-
+    def countBigWinner(self):
+        big_winner = self.changeNumToChar(self.play_count + 2)
+        for i in range (NEW_POSITION, NEW_POSITION + self.people_count):
+            count = 0
+            for j in range(1,self.play_count+1):
+                column = self.changeNumToChar(j)
+                position = column + str(i)
+                if self.sheet[position].value is not None:
+                    count += self.sheet[position].value
+            self.sheet[big_winner + str(i - (self.people_count + 3))].value = count
 
 
 #
