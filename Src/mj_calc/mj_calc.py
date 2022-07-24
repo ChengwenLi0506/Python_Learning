@@ -3,8 +3,10 @@ import xlwings as xw
 PLAY_POSITION = 'B21'
 PEOPLE_POSITION = 'B22'
 
-OLD_POSITION = 2
-NEW_POSITION = 11
+OLD_PEOPLE_POSITION = 2
+NEW_PEOPLE_POSITION = 11
+
+PLAY_NAME_POSITION = 2
 
 
 class Counter:
@@ -12,48 +14,101 @@ class Counter:
         self.sheet = sheet
         self.play_count = int(sheet[PLAY_POSITION].value)
         self.people_count = int(sheet[PEOPLE_POSITION].value)
-        print(self.play_count, self.people_count)
 
     def doStart(self):
-        self.setName()
-        for i in range(1,self.play_count + 1):
-            self.getMax(i)
-        self.countBigWinner()
+        # clear the original content
+        self.clear()
 
-    def getMax(self, play_index):
-        Max = 0
+        # copy people name
+        self.copyName()
+
+        # operate the big winner
+        self.calcWinner()
+        self.sumWinner()
+
+
+    # clear the winner's calculation region
+    def clear(self):
+        c = PLAY_NAME_POSITION
+        r = NEW_PEOPLE_POSITION
+        start = getCell(c, r)
+
+        c = PLAY_NAME_POSITION + self.play_count + 1
+        r = NEW_PEOPLE_POSITION + self.people_count - 1
+        end = getCell(c, r)
+
+        self.sheet.range(start, end).clear_contents()
+
+    def copyName(self):
+        for i in range(self.people_count):
+            source = getCell(PLAY_NAME_POSITION, OLD_PEOPLE_POSITION + i)
+            target = getCell(PLAY_NAME_POSITION, NEW_PEOPLE_POSITION + i)
+            self.sheet[target].value = self.sheet[source].value
+
+
+    def calcWinner(self):
+        for i in range(self.play_count):
+            self.setMax(PLAY_NAME_POSITION + i + 1)
+
+    def sumWinner(self):
+        for i in range(self.people_count):
+            start = getCell(PLAY_NAME_POSITION + 1, NEW_PEOPLE_POSITION + i)
+            end = getCell(PLAY_NAME_POSITION + self.play_count, NEW_PEOPLE_POSITION + i)
+            target = getCell(PLAY_NAME_POSITION + self.play_count + 1, NEW_PEOPLE_POSITION + i)
+
+            # sum the big winner
+            sum_string = '=SUM({:s}:{:s})'.format(start, end)
+            self.sheet[target].value = sum_string
+
+            # copy the big winner
+            winner = getCell(PLAY_NAME_POSITION + self.play_count + 2, OLD_PEOPLE_POSITION + i)
+            self.sheet[winner].value = self.sheet[target].value
+
+
+    def setMax(self, column):
         index = 0
-        column = self.changeNumToChar(play_index)
+        max = 0
         for i in range(self.people_count):
-            position = column + str(i + OLD_POSITION)
-            if self.sheet[position].value is not None:
-                if self.sheet[position].value > Max:
-                    Max = self.sheet[position].value
+            pos = getCell(column, OLD_PEOPLE_POSITION + i)
+            if self.sheet[pos].value is not None:
+                if self.sheet[pos].value > max:
+                    max = self.sheet[pos].value
                     index = i
-        self.sheet[column + str(index + NEW_POSITION)].value = 1
+                elif self.sheet[pos].value == max:
+                    pos_sum_index = getCell(PLAY_NAME_POSITION + self.play_count + 1, OLD_PEOPLE_POSITION + index)
+                    pos_sum_i = getCell(PLAY_NAME_POSITION + self.play_count + 1, OLD_PEOPLE_POSITION + i)
+                    if self.sheet[pos_sum_i].value > self.sheet[pos_sum_index].value:
+                        index = i
 
-    def setName(self):
-        for i in range(self.people_count):
-            before = 'B' + str(OLD_POSITION + i)
-            after = 'B' + str(NEW_POSITION + i)
-            self.sheet[after].value = self.sheet[before].value
+        # set the big winner to 1
+        pos = getCell(column, NEW_PEOPLE_POSITION + index)
+        self.sheet[pos].value = 1
 
-    def changeNumToChar(self, play = None):
-        if play <= 24:
-            return chr(play + 66)
-        else:
-            return 'A' + chr(play + 40)
 
-    def countBigWinner(self):
-        big_winner = self.changeNumToChar(self.play_count + 2)
-        for i in range (NEW_POSITION, NEW_POSITION + self.people_count):
-            count = 0
-            for j in range(1,self.play_count+1):
-                column = self.changeNumToChar(j)
-                position = column + str(i)
-                if self.sheet[position].value is not None:
-                    count += self.sheet[position].value
-            self.sheet[big_winner + str(i - (self.people_count + 3))].value = count
+
+
+# convert cell coordinate to position
+# (2, 3) -> 'B3'
+def getCell(column, row):
+    pos_c = getColumnChar(column)
+    pos_r = getRowChar(row)
+    position = pos_c + pos_r
+    return position
+
+# convert column number to string
+# (1) -> 'A'
+def getColumnChar(column):
+    result = ''
+    if column > 26:
+        result = 'A' + chr(ord('A') + column - 27)
+    else:
+        result = chr(ord('A') + column - 1)
+    return result
+
+# convert row number to string
+# (1) -> '1'
+def getRowChar(row):
+    return str(row)
 
 
 #
