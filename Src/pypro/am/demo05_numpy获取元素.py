@@ -22,9 +22,18 @@ print(t1[:,[1,3]])
 # 获取不连续的行与列 (1: 获取连续的行,不连续列,2:在获取不连续的行)
 # [[1,3],
 # [9,1]]
-temp = t1[:,[1,3]]
+
+temp = t1[[0,2],[1,3]]
+print('-'*100)
 print(temp,type(temp))
+
+temp = t1[:,[1,3]]
+print('-'*100)
+print(temp,type(temp))
+
 print(temp[[0,2],:])
+print('-'*100)
+
 print(t1[:,[1,3]][[0,2]])
 
 
