@@ -99,6 +99,8 @@ similarity = pd.DataFrame(corr_FG,columns=['相关系数'])
 # # 如果某部电影评分用户评价阿甘正传用户一个交叉项也没有,则就无法计算协方差,形成空值
 print(similarity)
 
+
+
 print('-'*100)
 # # 可以通过dropna删除控制
 similarity.dropna(inplace=True)
@@ -108,6 +110,7 @@ print('-'*100)
 similarity = pd.merge(corr_FG,rattings['评分次数'],left_index=True,right_index=True)
 print(similarity)
 
+similarity.to_excel('../data/相关系数.xlsx')
 
 print('-'*100)
 similarity_new = similarity[similarity['评分次数'] > 20].sort_values(by='相关系数',ascending=False)
@@ -115,7 +118,7 @@ print(similarity_new)
 
 print(similarity_new.head(n=10))
 
-
+similarity_new.to_excel('../data/电影推荐.xlsx')
 
 
 
