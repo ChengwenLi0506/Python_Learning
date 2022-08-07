@@ -1,29 +1,29 @@
 import numpy as np
 import pandas as pd
 
-import warnings
-warnings.filterwarnings("ignore")
+# import warnings
+# warnings.filterwarnings("ignore")
 
 
-# # 1, load the data from the file
-# movies = pd.read_excel("../data/电影.xlsx")
-# score = pd.read_excel("../data/评分.xlsx")
-# print('-'*100)
-#
-# # 2, show the data basic info
-# print(movies.info())
-# print(score.info())
-# print('-'*100)
-#
-# # 3, show the first 5 records of data
-# print(movies.head(n=5))
-# print(score.head(n=5))
-#
-#
-#
-# # 4, merge the data from the parts
-# df = pd.merge(movies,score,on='电影编号',how="inner")
-# df.to_excel('../data/电影推荐系统.xlsx',index=False)
+# 1, load the data from the file
+movies = pd.read_excel("../data/电影.xlsx")
+score = pd.read_excel("../data/评分.xlsx")
+print('-'*100)
+
+# 2, show the data basic info
+print(movies.info())
+print(score.info())
+print('-'*100)
+
+# 3, show the first 5 records of data
+print(movies.head(n=5))
+print(score.head(n=5))
+
+
+
+# 4, merge the data from the parts
+df = pd.merge(movies,score,on='电影编号',how="inner")
+df.to_excel('../data/电影推荐系统.xlsx',index=False)
 
 # 从电影推荐系统.xlsx读取数据
 df = pd.read_excel('../data/电影推荐系统.xlsx')
@@ -92,12 +92,15 @@ FG = user_movie['勇敢者的游戏（1995）']
 # print(type(FG))
 # print(FG)
 
+
 print(pd.DataFrame(FG).head(n=5))
+print('*'*100)
 
 # # 利用前面讲到的corrwidh 函数计算 (阿甘正传)与其它电影的皮尔逊系数
 # corr()是计算整张表的相关性
 # corrwith(A)是计算整张表中其它物品和A物品之间的相关性
 corr_FG = user_movie.corrwith(FG)
+print('*'*100)
 corr_FG.name = '相关系数'
 print(corr_FG)
 print('-'*100)
