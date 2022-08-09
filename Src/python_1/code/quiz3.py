@@ -9,6 +9,10 @@ print(type(a), a)
 a = '123'
 print(type(a), a)
 
+a = "double quotes"
+print(type(a), a)
+
+
 a = [1,2,3,4]
 print(type(a), a)
 
