@@ -1,0 +1,44 @@
+培训内容分为四个部分：
+
+01-Data Analysis with Python
+课件：Data Analysis with Python_PPT_20220510_LiuHong.pdf
+试验环境，链接：https://pan.baidu.com/s/1C43EqMM9oV66GLT-ikkFKg    
+提取码：n24t
+
+培训录制，链接：https://cisco.webex.com/recordingservice/sites/cisco/recording/playback/ae302d6ab22e103a97df005056810b1f
+密码：9eBGFeGH
+
+
+02-Data Visualization by Python
+课件：Data Visualization by Python_PPT_LiuHong_20220511.pdf
+试验环境，链接：https://pan.baidu.com/s/1C43EqMM9oV66GLT-ikkFKg    
+提取码：n24t
+
+培训录制，链接：
+https://cisco.webex.com/recordingservice/sites/cisco/recording/playback/d10e2e73b2f7103ab7df0050568150c6
+密码：iHYrApn2
+
+
+03-Machine Learning Fundamentals
+课件：讲义：数据分析与机器学习_2022年5月27日.pdf
+试验环境，链接：https://pan.baidu.com/s/1C43EqMM9oV66GLT-ikkFKg    
+提取码：n24t
+
+培训录制，链接：
+https://cisco.webex.com/recordingservice/sites/cisco/recording/playback/7594456fbf8a103abf1c00505681061a
+密码：59JcU2SD
+
+
+04-Data Analysis with Excel & Python
+课件：Data Analysis with Excel & Python (Excel数据分析能力实践)_PPT.pdf
+试验环境，链接：https://pan.baidu.com/s/1C43EqMM9oV66GLT-ikkFKg 
+提取码：n24t
+
+培训录制，链接：
+https://cisco.webex.com/recordingservice/sites/cisco/recording/playback/3fa21829cce6103abfff00505681b43c
+密码：JjYfeRg3
+
+
+
+
+
