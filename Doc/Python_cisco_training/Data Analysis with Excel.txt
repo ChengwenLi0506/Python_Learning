@@ -1,0 +1,147 @@
+numpy 数据运算，数据分析时重要
+pandas 加载，清洗，分组，聚合，保存
+matplotlit 可视化
+sk-learn 机器学习
+tensflower 深度学习
+
+DataFrame, Series都是类，因为首字母大写
+DataFrame有多列，所以用columns
+Series只有一列，所以用name
+
+
+loc 数据切片，选行和列 loc[行，列] 行和列用名称
+iloc 数据切片，选行和列 iloc[行，列] 行和列用索引
+iloc = index loc
+
+还有一种简写方式，默认就是直接取列
+a['a','c'] 取多列
+
+DataFrame的本质就是dict，所以可以类wny
+
+
+Excel 表对应DataFrame，有列名，有索引
+图形图像 对应的ndarray，只有数据，没有列名和索引
+
+map函数
+1， python提供的系统函数   map(fun, data)
+2， Series也提供map 函数  Series.map(fun)，没有数据，因为数据就在Series中
+map表示映射，将Series中的每一个值进行处理，进行映射
+返回的仍然是Series
+
+
+
+drop 是删除数据 axis=1代表列，axis=0代表行
+ndarray用于运算，list用于存储
+
+函数的不定长参数，以及返回值，都是tuple元组，tuple元组和list列表的不同是tuple元组不能修改
+
+
+show 没有下划线，public
+_show，一个下划线， protected
+__show，二个下划线，private
+__show__，前后都是二个下划线，魔法，是系统的system
+
+
+apply跟map差不多的调用
+
+
+Excel常见操作：去重，缺省值，字符串api，分组
+py -> exe，可以脱离python环境，直接运行
+
+在python中0和空值是不一样的
+0， np.nan
+
+函数参数中有一个inplace = True，表示替换
+或者用变量直接赋值
+
+
+drop_duplicate 删除重复项
+replace 替换
+
+pandas中的str方法，对处理字符串很有帮助
+
+在ndarray中通过boolean值进行过滤时，会改变原来的维度
+二维会变成一维
+
+python中的布尔运算
+and, or, not
+DataFrame中的布尔运算
+&、 |、 ~ 
+
+
+merge只能合并列，不能合并行
+concat既能合并列，也能合并行
+
+
+pyinstaller 将python打包成exe文件，可以脱离python环境直接运行
+https://baijiahao.baidu.com/s?id=1730967334580447129&wfr=spider&for=pc
+
+pyinstaller -F XXX.py
+
+python运行的第一个参数，肯定是可运行的文件自己
+从第二个参数开始，才是真正的参数序列
+
+从word中抽取图片，采用zipFile
+
+import xlwings as xw，这个就是导入Excel操作库
+
+
+Excel单元格是由行和列组成，行是字母，列是数字，这样组成的就是字母+数字
+这种组合符合程序代码中的变量命名规则
+
+python中函数的参数的顺序肯定是：
+不定长，必填，缺省，关键字
+可视化对函数的参数要求非常高的，一定要对应函数弄清楚
+
+老版本的后缀是xls，数据文件和带宏的文件都是一样的后缀
+新版本的后缀是xlsx，是数据文件，xlsm是带宏的文件
+只有带宏的后缀才允许宏执行
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+少勇，金树，会中，（勇红），树广，高阳，天云，华峰，年发，汉高
+大兵，义稳，罗老师，冯老师，立华，涨生，荣华
+寒荣，翠荣，（映容），桂兰
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
