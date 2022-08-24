@@ -8,10 +8,6 @@ df = pd.read_excel("byd_sales.xlsx", sheet_name= '2021')
 df2022 = pd.read_excel("byd_sales.xlsx", sheet_name= '2022')
 print(df)
 
-#df2022.dropna(axis=0, how='any', inplace=True);
-print(df2022)
-
-
 #2021 sheet
 data = df.values
 
@@ -25,10 +21,10 @@ sell21 = df['销量'].values.tolist()
 sell22 = df2022['销量'].values.tolist()
 
 #同比增长率
-linedata = ((df2022['销量'].values - df['销量'].values) / df['销量'].values).tolist()
+linedata = ((df2022['销量'].values - df['销量'].values) / df['销量'].values * 100).tolist()
 print(linedata)
 
-linedata1 = [round(n, 3)*100 for n in linedata]
+linedata1 = [round(n, 1) for n in linedata]
 print(linedata1)
 
 #for i in range(0, len(linedata)):
@@ -105,26 +101,12 @@ line = (
         yaxis_index=1,
         label_opts=opts.LabelOpts(color='#FFFFFF',formatter=JsCode("function (params) {return params.value[1] + '%'}")),
     )
-    # 右边刻度
-    .extend_axis(
-        yaxis=opts.AxisOpts(
-            type_="value",
-            min_=0,
-            max_=350,
-            position="right",
-            split_number=7,
-            axisline_opts=opts.AxisLineOpts(is_show=False),
-            axistick_opts=opts.AxisTickOpts(is_show=False),
-            axislabel_opts=opts.LabelOpts(color='#FFFFFF', formatter="{value}%"),
-        )
-    )
 )
 
 bar.overlap(line)
-# line.overlap(bar)
 
 grid = Grid()
 grid.bg_color = "#808080"
 grid.add(bar, opts.GridOpts(pos_left="20%", pos_right="20%"), is_control_axis_index=True)
-grid.render("grid_multi_yaxis.html")
+grid.render("grid_multi_yaxis2.html")
 
